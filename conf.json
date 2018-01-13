@@ -1,0 +1,14 @@
+{
+  "Android": [
+    {
+      "command": "settings.gradle",
+      "upsert": "wondertoolkit"
+    },
+    {
+      "command": "copy",
+      "src": "./wondertoolkit/",
+      "dst": "./wondertoolkit/",
+      "clean": "true"
+    }
+  ]
+}
