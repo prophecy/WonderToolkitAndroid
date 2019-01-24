@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 28
   //      versionCode 1
 //        versionName "1.0"
 
@@ -33,25 +33,25 @@ ext {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
-    compile 'com.android.support:appcompat-v7:' + supportLibVersion
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:' + supportLibVersion
-    compile 'com.android.support:appcompat-v7:' + supportLibVersion
-    compile 'com.android.support:cardview-v7:' + supportLibVersion
-    compile 'com.android.support:recyclerview-v7:' + supportLibVersion
-    testCompile 'junit:junit:4.12'
-    compile 'android.arch.lifecycle:extensions:' + archLifecycleVersion
-    compile 'android.arch.persistence.room:runtime:' + archRoomVersion
+    api 'com.android.support:appcompat-v7:' + supportLibVersion
+    api 'com.android.support.constraint:constraint-layout:1.1.3'
+    api 'com.android.support:design:' + supportLibVersion
+    api 'com.android.support:appcompat-v7:' + supportLibVersion
+    api 'com.android.support:cardview-v7:' + supportLibVersion
+    api 'com.android.support:recyclerview-v7:' + supportLibVersion
+    testImplementation 'junit:junit:4.12'
+    api 'android.arch.lifecycle:extensions:' + archLifecycleVersion
+    api 'android.arch.persistence.room:runtime:' + archRoomVersion
     annotationProcessor 'android.arch.lifecycle:compiler:' + archLifecycleVersion
     annotationProcessor 'android.arch.persistence.room:compiler:' + archRoomVersion
 
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    api 'com.google.code.gson:gson:2.8.2'
+    api 'com.squareup.okhttp3:okhttp:3.10.0'
 }
