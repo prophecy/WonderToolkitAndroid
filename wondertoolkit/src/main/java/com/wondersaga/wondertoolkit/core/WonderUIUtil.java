@@ -6,6 +6,9 @@ import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
 
 /**
  * Created by ProphecyX on 9/3/2017 AD.
@@ -32,6 +35,39 @@ public class WonderUIUtil {
     public interface ViewTreeListener {
 
         void onViewAddedOnViewTree();
+    }
+
+    public void waitForViewAndChildrenAddedOnViewTree(final LinearLayout container, final ViewTreeListener viewTreeListener) {
+
+        final ArrayList<View> viewList = new ArrayList<>();
+
+        viewList.add(container);
+
+        waitForViewListAddedOnViewTree(viewList, viewTreeListener);
+    }
+
+    public void waitForViewListAddedOnViewTree(final ArrayList<View> viewList, final ViewTreeListener viewTreeListener) {
+
+        class Counter {
+            public int counter;
+        }
+
+        final Counter c = new Counter();
+        c.counter = 0;
+
+        for (int i=0; i<viewList.size(); ++i) {
+
+            waitForViewAddedOnViewTree(viewList.get(i), new ViewTreeListener() {
+                @Override
+                public void onViewAddedOnViewTree() {
+
+                    ++c.counter;
+
+                    if (c.counter >= viewList.size())
+                        viewTreeListener.onViewAddedOnViewTree();
+                }
+            });
+        }
     }
 
     public void waitForViewAddedOnViewTree(final View view, final ViewTreeListener viewTreeListener) {
